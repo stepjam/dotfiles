@@ -17,7 +17,7 @@ do_install() {
 do_configure() {
     info "[zsh] Configure"
     info "[zsh][configure] Set as default shell"
-    chsh -s $(which zsh) $(whoami)
+    sudo chsh -s $(which zsh) $(whoami)
 }
 
 main() {
