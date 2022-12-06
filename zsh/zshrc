@@ -60,17 +60,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 # Set the GPG_TTY to the current TTY
 export GPG_TTY=$TTY
 
-# OSTYPE specific settings
-case "${OSTYPE}" in
-    linux*)
-        if (( $+commands[setxkbmap] )); then
-            setxkbmap -option caps:escape_shifted_capslock
-            setxkbmap -option altwin:swap_lalt_lwin
-        fi
-        ;;
-    *) ;;
-esac
-
 # Ruby Version Manager
 export RVM_DIR="${HOME}/.rvm"
 test -f "${RVM_DIR}/scripts/rvm" && source "${RVM_DIR}/scripts/rvm"
