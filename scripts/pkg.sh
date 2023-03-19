@@ -8,11 +8,9 @@ DEBIAN_FRONTEND=noninteractive
 
 do_install() {
     local shared_packages=(
+        git
         curl
         htop
-        httpie
-        jq
-        moreutils
         python3
         tree
         unzip
@@ -33,13 +31,7 @@ do_install() {
         local linux_packages=(
             build-essential
             cmake
-            dconf-cli
-            libreadline-dev
-            ncurses-term
             python3-pip
-            units
-            unrar
-            uuid-runtime
         )
         sudo apt update
         sudo apt-get install -y "${shared_packages[@]}"

@@ -5,19 +5,19 @@ set -e
 source "$(pwd)/scripts/util.sh"
 
 do_install() {
-    if is_installed zsh; then
-        info "[zsh] Already installed"
+    if is_installed fish; then
+        info "[fish] Already installed"
         return
     fi
 
-    info "[zsh] Install"
-    sudo apt install -y zsh
+    info "[fish] Install"
+    sudo apt install -y fish
 }
 
 do_configure() {
-    info "[zsh] Configure"
-    info "[zsh][configure] Set as default shell"
-    sudo chsh -s $(which zsh) $(whoami)
+    info "[fish] Configure"
+    info "[fish][configure] Set as default shell"
+    sudo chsh -s $(which fish) $(whoami)
 }
 
 main() {

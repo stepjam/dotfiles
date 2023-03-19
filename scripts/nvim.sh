@@ -4,31 +4,28 @@ set -e
 
 source "$(pwd)/scripts/util.sh"
 
-RVM_DIR="${HOME}/.rvm"
-NVM_DIR="${HOME}/.nvm"
+NVIM_VERSION="v0.8.3"
 
 do_install() {
-    if is_installed vim; then
-        info "[vim] Already installed"
+    if is_installed nvim; then
+        info "[nvim] Already installed"
         return
     fi
 
-    info "[vim] Install"
-    #sudo add-apt-repository ppa:neovim-ppa/unstable -y
-    #sudo apt update
+    info "[nvim] Install"
     
     if [ "$(uname)" == "Darwin" ]; then
-        brew install vim        
+        brew install neovim        
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        sudo apt install -y vim
+        local neovim=/tmp/neovim.deb
+        download_to "${neovim}" "https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/nvim-linux64.deb"
+        sudo dpkg -i "${neovim}"
     fi
 }
 
 do_configure() {
-    info "[vim] Configure"
-    ln -fs "$(pwd)/vim/vimrc" "${HOME}/.vimrc"
-    mkdir -p "${HOME}/.vim"
-    ln -fs "$(pwd)/vim/plugins.rc.vim" "${HOME}/.vim/plugins.rc.vim"
+    info "[nvim] Configure"
+    ln -fs "$(pwd)/nvim" "${HOME}/.config"
 }
 
 main() {
